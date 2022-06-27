@@ -1,0 +1,38 @@
+{% extends 'email_scheduler_app/base_with_navigation.html' %}
+
+{% block scheduled_content %}
+    <div class="card-group">
+    {% for email in emails %}
+
+    <div class="card " style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{email.subject}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">From: {{email.sender}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">To: {{email.receiver}}</h6>
+                <!--p class="card-text">{{email.message}}</p-->
+                <h7>Schedule: {{email.send_schedule_date}}</h7>
+                <br>
+                <h8>Id: {{email.id}}</h8>
+                <br>
+                <!--form method="POST"-->
+                    {% csrf_token %}
+                    <div class="btn-group" role="group">
+                        <a href="{% url 'edit_email' pk=email.pk %}" class="save btn btn-secondary">Edit</a>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                    </div>
+                <!--/form-->
+            </div>
+    </div>
+    </div>
+
+    {% endfor %}
+
+{% endblock %}
+
+{% block sent_content %}
+    <div>Sent section has no content yet</div>
+{% endblock %}
+
+{% block trash_content %}
+    <div>Trash section has no content yet</div>
+{% endblock %}

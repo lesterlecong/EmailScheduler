@@ -1,0 +1,10 @@
+{% extends 'email_scheduler_app/base.html' %}
+
+{% block content %}
+    <h2>New Email</h2>
+    <form method="POST" class="email-message">{% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit" class="save btn btn-secondary">Save</button>
+    </form>
+
+{% endblock %}
